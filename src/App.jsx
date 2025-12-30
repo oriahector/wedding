@@ -67,7 +67,7 @@ function App() {
           >
             <img
               src={couplePhoto}
-              alt="David y Patricia"
+              alt="David y Patri"
               className="w-64 md:w-72 mx-auto"
             />
           </motion.div>
@@ -82,7 +82,7 @@ function App() {
               Nos casamos
             </p>
             <h1 className="font-title text-5xl md:text-7xl lg:text-8xl text-[var(--color-charcoal)]">
-              David & Patricia
+              David & Patri
             </h1>
           </motion.div>
 
@@ -196,11 +196,8 @@ function App() {
                     <br />
                     Os citamos a las{' '}
                     <span className="text-[var(--color-terracotta)] font-medium">
-                      12:30h
+                      13:00h
                     </span>
-                  </p>
-                  <p className="text-sm text-[var(--color-taupe)]/70 mt-1">
-                    (Hora exacta en la invitación)
                   </p>
                 </div>
 
@@ -209,7 +206,7 @@ function App() {
                     Dress Code
                   </p>
                   <p className="text-[var(--color-taupe)]">
-                    Elegante pero cómodo
+                    No hay dresscode, pero
                     <br />
                     ¡Preparaos para bailar!
                   </p>
@@ -274,9 +271,24 @@ function App() {
                   🚌 Bus de la boda
                 </p>
                 <p className="text-[var(--color-taupe)] text-sm">
-                  Habrá autobús desde el Hotel Rinconsol.
+                  <span className="text-[var(--color-terracotta)] font-bold">
+                    12.00h
+                  </span>{' '}
+                  saldrá de la{' '}
+                  <a
+                    href="https://maps.app.goo.gl/bYWDBwKo7gGv1mMHA"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--color-terracotta)] underline hover:text-[var(--color-terracotta-dark)] transition-colors"
+                  >
+                    estación de autobuses de Vélez-Málaga
+                  </a>
                   <br />
-                  Horarios en la invitación.
+                  <span className="text-[var(--color-terracotta)] font-bold">
+                    12.20h
+                  </span>{' '}
+                  saldrá del hotel Rinconsol
+                  <br />
                 </p>
               </div>
             </motion.div>
