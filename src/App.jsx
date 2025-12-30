@@ -899,24 +899,44 @@ function App() {
           >
             <div className="rounded-lg overflow-hidden shadow-lg">
               <iframe
-                src="https://open.spotify.com/embed/playlist/0ehWFfKmBDAeRsXZK2GLmy?utm_source=generator&theme=0"
+                data-testid="embed-iframe"
+                style={{ borderRadius: '12px' }}
+                src="https://open.spotify.com/embed/playlist/0ehWFfKmBDAeRsXZK2GLmy?utm_source=generator"
                 width="100%"
-                height="500"
+                height="352"
                 frameBorder="0"
+                allowFullScreen
                 allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                 loading="lazy"
                 className="w-full"
               ></iframe>
             </div>
-            <div className="text-center mt-6">
-              <a
-                href="https://open.spotify.com/playlist/0ehWFfKmBDAeRsXZK2GLmy?si=7ab10e5b48174bbb"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--color-terracotta)] text-sm underline hover:text-[var(--color-charcoal)] transition-colors"
-              >
-                Abrir en Spotify
-              </a>
+            <div className="text-center mt-6 space-y-4">
+              <div>
+                <a
+                  href="https://open.spotify.com/playlist/0ehWFfKmBDAeRsXZK2GLmy?si=a3d608821e314cec&pt=bf135fca0ad7963bb1d3bb5292ad0276"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[var(--color-charcoal)] border-b-2 border-[var(--color-terracotta)] pb-1 hover:text-[var(--color-terracotta)] transition-colors"
+                >
+                  <span className="text-sm uppercase tracking-widest">
+                    Añadir canciones
+                  </span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M12 4v16m8-8H4"
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
