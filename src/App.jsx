@@ -10,6 +10,38 @@ function App() {
     seconds: 0,
   })
 
+  const [formData, setFormData] = useState({
+    nombre: '',
+    acompanante: '',
+    transporte: '',
+    intolerancias: '',
+    traeNinos: '',
+    ubicacionNinos: '',
+    menuNinos: '',
+    menuVegetariano: '0',
+    sorbete: '',
+  })
+
+  const [formSubmitted, setFormSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // Simular envío (aquí podrías conectar con un backend)
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    console.log('Datos del formulario:', formData)
+    setFormSubmitted(true)
+    setIsSubmitting(false)
+  }
+
   useEffect(() => {
     const weddingDate = new Date('2026-02-28T12:30:00')
     const timer = setInterval(() => {
@@ -39,7 +71,13 @@ function App() {
             D & P
           </a>
           <div className="hidden md:flex items-center gap-10">
-            {['Inicio', 'Celebración', 'Lugar', 'Alojamiento'].map((item) => (
+            {[
+              'Inicio',
+              'Celebración',
+              'Lugar',
+              'Alojamiento',
+              'Confirmación',
+            ].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -267,29 +305,43 @@ function App() {
 
               {/* Transport */}
               <div className="mt-12 pt-8 border-t border-[var(--color-sand)]">
-                <p className="text-lg font-medium text-[var(--color-charcoal)] mb-2">
+                <p className="text-2xl font-medium text-[var(--color-charcoal)] mb-6">
                   🚌 Bus de la boda
                 </p>
-                <p className="text-[var(--color-taupe)] text-sm">
-                  <span className="text-[var(--color-terracotta)] font-bold">
-                    12.00h
-                  </span>{' '}
-                  saldrá de la{' '}
-                  <a
-                    href="https://maps.app.goo.gl/bYWDBwKo7gGv1mMHA"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--color-terracotta)] underline hover:text-[var(--color-terracotta-dark)] transition-colors"
-                  >
-                    estación de autobuses de Vélez-Málaga
-                  </a>
-                  <br />
-                  <span className="text-[var(--color-terracotta)] font-bold">
-                    12.20h
-                  </span>{' '}
-                  saldrá del hotel Rinconsol
-                  <br />
-                </p>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-4">
+                    <span className="font-title text-2xl text-[var(--color-terracotta)] font-bold min-w-[80px]">
+                      12.00h
+                    </span>
+                    <p className="text-[var(--color-charcoal)] text-lg">
+                      Salida desde la{' '}
+                      <a
+                        href="https://maps.app.goo.gl/bYWDBwKo7gGv1mMHA"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--color-terracotta)] underline hover:text-[var(--color-charcoal)] transition-colors"
+                      >
+                        estación de autobuses de Vélez-Málaga
+                      </a>
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <span className="font-title text-2xl text-[var(--color-terracotta)] font-bold min-w-[80px]">
+                      12.20h
+                    </span>
+                    <p className="text-[var(--color-charcoal)] text-lg">
+                      Salida desde el{' '}
+                      <a
+                        href="https://maps.app.goo.gl/9pCYyLvEZzsGfPLt8"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--color-terracotta)] underline hover:text-[var(--color-charcoal)] transition-colors"
+                      >
+                        hotel Rinconsol
+                      </a>
+                    </p>
+                  </div>
+                </div>
               </div>
             </motion.div>
 
@@ -391,36 +443,376 @@ function App() {
                 </div>
               </div>
 
-              <a
-                href="https://www.hotelrinconsol.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 text-[var(--color-charcoal)] border-b-2 border-[var(--color-terracotta)] pb-1 hover:text-[var(--color-terracotta)] transition-colors"
-              >
-                <span className="text-sm uppercase tracking-widest">
-                  Reservar
-                </span>
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <div className="flex flex-wrap gap-6">
+                <a
+                  href="https://www.hotelrinconsol.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 text-[var(--color-charcoal)] border-b-2 border-[var(--color-terracotta)] pb-1 hover:text-[var(--color-terracotta)] transition-colors"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={1.5}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </a>
+                  <span className="text-sm uppercase tracking-widest">
+                    Reservar
+                  </span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://maps.app.goo.gl/9pCYyLvEZzsGfPLt8"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 text-[var(--color-charcoal)] border-b-2 border-[var(--color-sand)] pb-1 hover:text-[var(--color-terracotta)] transition-colors"
+                >
+                  <span className="text-sm uppercase tracking-widest">
+                    Ver mapa
+                  </span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={1.5}
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                </a>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Confirmation / RSVP */}
+      <section id="confirmación" className="py-24 px-6">
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            <p className="text-[var(--color-terracotta)] text-xs uppercase tracking-[0.4em] mb-4">
+              RSVP
+            </p>
+            <h2 className="font-title text-4xl md:text-5xl text-[var(--color-charcoal)] mb-4">
+              Confirmación
+            </h2>
+            <p className="text-[var(--color-taupe)]">
+              Por favor, confirma tu asistencia lo antes posible
+            </p>
+          </motion.div>
+
+          {formSubmitted ? (
+            <motion.div
+              className="text-center py-16 px-8 bg-[var(--color-cream)] rounded-lg"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="text-5xl mb-6">💒</div>
+              <h3 className="font-title text-2xl text-[var(--color-charcoal)] mb-4">
+                ¡Gracias por confirmar!
+              </h3>
+              <p className="text-[var(--color-taupe)]">
+                Hemos recibido tu confirmación. ¡Nos vemos el 28 de febrero!
+              </p>
+            </motion.div>
+          ) : (
+            <motion.form
+              onSubmit={handleSubmit}
+              className="space-y-8"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-100px' }}
+              transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+            >
+              {/* Nombre */}
+              <div>
+                <label className="block text-sm uppercase tracking-widest text-[var(--color-taupe)] mb-2">
+                  Nombre y apellidos *
+                </label>
+                <input
+                  type="text"
+                  name="nombre"
+                  value={formData.nombre}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full px-4 py-3 bg-[var(--color-cream)] border border-[var(--color-sand)] rounded-lg focus:outline-none focus:border-[var(--color-terracotta)] transition-colors text-[var(--color-charcoal)]"
+                  placeholder="Tu nombre completo"
+                />
+              </div>
+
+              {/* Acompañante */}
+              <div>
+                <label className="block text-sm uppercase tracking-widest text-[var(--color-taupe)] mb-2">
+                  Nombre del acompañante
+                </label>
+                <input
+                  type="text"
+                  name="acompanante"
+                  value={formData.acompanante}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-[var(--color-cream)] border border-[var(--color-sand)] rounded-lg focus:outline-none focus:border-[var(--color-terracotta)] transition-colors text-[var(--color-charcoal)]"
+                  placeholder="Nombre de tu acompañante (si aplica)"
+                />
+              </div>
+
+              {/* Transporte */}
+              <div>
+                <label className="block text-sm uppercase tracking-widest text-[var(--color-taupe)] mb-3">
+                  Transporte *
+                </label>
+                <div className="flex flex-wrap gap-4">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="transporte"
+                      value="bus"
+                      checked={formData.transporte === 'bus'}
+                      onChange={handleInputChange}
+                      required
+                      className="w-4 h-4 accent-[var(--color-terracotta)]"
+                    />
+                    <span className="text-[var(--color-charcoal)]">
+                      🚌 Usaré el bus
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="transporte"
+                      value="coche"
+                      checked={formData.transporte === 'coche'}
+                      onChange={handleInputChange}
+                      className="w-4 h-4 accent-[var(--color-terracotta)]"
+                    />
+                    <span className="text-[var(--color-charcoal)]">
+                      🚗 Voy por mi cuenta
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Intolerancias */}
+              <div>
+                <label className="block text-sm uppercase tracking-widest text-[var(--color-taupe)] mb-2">
+                  Intolerancias alimentarias
+                </label>
+                <textarea
+                  name="intolerancias"
+                  value={formData.intolerancias}
+                  onChange={handleInputChange}
+                  rows={2}
+                  className="w-full px-4 py-3 bg-[var(--color-cream)] border border-[var(--color-sand)] rounded-lg focus:outline-none focus:border-[var(--color-terracotta)] transition-colors text-[var(--color-charcoal)] resize-none"
+                  placeholder="Celiaquía, alergias, etc."
+                />
+              </div>
+
+              {/* Niños */}
+              <div className="space-y-4">
+                <label className="block text-sm uppercase tracking-widest text-[var(--color-taupe)] mb-3">
+                  ¿Traes niños? *
+                </label>
+                <div className="flex gap-6">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="traeNinos"
+                      value="si"
+                      checked={formData.traeNinos === 'si'}
+                      onChange={handleInputChange}
+                      required
+                      className="w-4 h-4 accent-[var(--color-terracotta)]"
+                    />
+                    <span className="text-[var(--color-charcoal)]">Sí</span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="traeNinos"
+                      value="no"
+                      checked={formData.traeNinos === 'no'}
+                      onChange={handleInputChange}
+                      className="w-4 h-4 accent-[var(--color-terracotta)]"
+                    />
+                    <span className="text-[var(--color-charcoal)]">No</span>
+                  </label>
+                </div>
+
+                {/* Opciones adicionales si trae niños */}
+                {formData.traeNinos === 'si' && (
+                  <motion.div
+                    className="ml-4 pl-4 border-l-2 border-[var(--color-sand)] space-y-4"
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div>
+                      <label className="block text-sm text-[var(--color-taupe)] mb-2">
+                        ¿Dónde se sientan los niños?
+                      </label>
+                      <div className="flex flex-wrap gap-4">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="ubicacionNinos"
+                            value="conmigo"
+                            checked={formData.ubicacionNinos === 'conmigo'}
+                            onChange={handleInputChange}
+                            className="w-4 h-4 accent-[var(--color-terracotta)]"
+                          />
+                          <span className="text-[var(--color-charcoal)] text-sm">
+                            Conmigo
+                          </span>
+                        </label>
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="ubicacionNinos"
+                            value="mesa-infantil"
+                            checked={
+                              formData.ubicacionNinos === 'mesa-infantil'
+                            }
+                            onChange={handleInputChange}
+                            className="w-4 h-4 accent-[var(--color-terracotta)]"
+                          />
+                          <span className="text-[var(--color-charcoal)] text-sm">
+                            Mesa infantil
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm text-[var(--color-taupe)] mb-2">
+                        ¿Los niños comen menú infantil?
+                      </label>
+                      <div className="flex gap-6">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="menuNinos"
+                            value="si"
+                            checked={formData.menuNinos === 'si'}
+                            onChange={handleInputChange}
+                            className="w-4 h-4 accent-[var(--color-terracotta)]"
+                          />
+                          <span className="text-[var(--color-charcoal)] text-sm">
+                            Sí
+                          </span>
+                        </label>
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="radio"
+                            name="menuNinos"
+                            value="no"
+                            checked={formData.menuNinos === 'no'}
+                            onChange={handleInputChange}
+                            className="w-4 h-4 accent-[var(--color-terracotta)]"
+                          />
+                          <span className="text-[var(--color-charcoal)] text-sm">
+                            No, menú adulto
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </div>
+
+              {/* Menú vegetariano */}
+              <div>
+                <label className="block text-sm uppercase tracking-widest text-[var(--color-taupe)] mb-2">
+                  Menús vegetarianos
+                </label>
+                <select
+                  name="menuVegetariano"
+                  value={formData.menuVegetariano}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 bg-[var(--color-cream)] border border-[var(--color-sand)] rounded-lg focus:outline-none focus:border-[var(--color-terracotta)] transition-colors text-[var(--color-charcoal)]"
+                >
+                  <option value="0">Ninguno</option>
+                  <option value="1">1 menú vegetariano</option>
+                  <option value="2">2 menús vegetarianos</option>
+                  <option value="3">3 menús vegetarianos</option>
+                  <option value="4">4 menús vegetarianos</option>
+                </select>
+              </div>
+
+              {/* Sorbete */}
+              <div>
+                <label className="block text-sm uppercase tracking-widest text-[var(--color-taupe)] mb-3">
+                  Sorbete *
+                </label>
+                <div className="flex flex-wrap gap-4">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="sorbete"
+                      value="con-alcohol"
+                      checked={formData.sorbete === 'con-alcohol'}
+                      onChange={handleInputChange}
+                      required
+                      className="w-4 h-4 accent-[var(--color-terracotta)]"
+                    />
+                    <span className="text-[var(--color-charcoal)]">
+                      🍾 Con alcohol
+                    </span>
+                  </label>
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="sorbete"
+                      value="sin-alcohol"
+                      checked={formData.sorbete === 'sin-alcohol'}
+                      onChange={handleInputChange}
+                      className="w-4 h-4 accent-[var(--color-terracotta)]"
+                    />
+                    <span className="text-[var(--color-charcoal)]">
+                      🍹 Sin alcohol
+                    </span>
+                  </label>
+                </div>
+              </div>
+
+              {/* Submit */}
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-4 bg-[var(--color-terracotta)] text-white font-medium uppercase tracking-widest rounded-lg hover:bg-[var(--color-charcoal)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                >
+                  {isSubmitting ? 'Enviando...' : 'Confirmar asistencia'}
+                </button>
+              </div>
+            </motion.form>
+          )}
+        </div>
+      </section>
+
       {/* Final message */}
-      <section className="py-24 px-6 text-center">
+      <section className="py-24 px-6 text-center bg-[var(--color-cream)]">
         <motion.div
           className="max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
@@ -450,7 +842,7 @@ function App() {
             para compartir este día tan especial
           </p>
           <p className="font-title text-2xl text-[var(--color-terracotta)]">
-            David & Patricia
+            David & Patri
           </p>
         </motion.div>
       </section>
