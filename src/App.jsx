@@ -106,7 +106,6 @@ function App() {
           </a>
           <div className="hidden md:flex items-center gap-10">
             {[
-              'Inicio',
               'Celebración',
               'Lugar',
               'Alojamiento',
