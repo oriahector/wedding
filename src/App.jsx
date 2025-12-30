@@ -339,12 +339,12 @@ function App() {
 
               {/* Transport */}
               <div className="mt-12 pt-8 border-t border-[var(--color-sand)]">
-                <p className="text-2xl font-medium text-[var(--color-charcoal)] mb-6">
-                  🚌 Bus de la boda
+                <p className="text-2xl font-medium text-[var(--color-charcoal)] mb-6 font-title">
+                  🚌 Bus de la boda - Horarios
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start gap-4">
-                    <span className="font-title text-2xl text-[var(--color-terracotta)] font-bold min-w-[80px]">
+                    <span className=" text-2xl text-[var(--color-terracotta)] font-bold min-w-[80px]">
                       12.00h
                     </span>
                     <p className="text-[var(--color-charcoal)] text-lg">
@@ -360,7 +360,7 @@ function App() {
                     </p>
                   </div>
                   <div className="flex items-start gap-4">
-                    <span className="font-title text-2xl text-[var(--color-terracotta)] font-bold min-w-[80px]">
+                    <span className=" text-2xl text-[var(--color-terracotta)] font-bold min-w-[80px]">
                       12.20h
                     </span>
                     <p className="text-[var(--color-charcoal)] text-lg">
@@ -373,6 +373,15 @@ function App() {
                       >
                         hotel Rinconsol
                       </a>
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-4">
+                    <span className="text-2xl text-[var(--color-terracotta)] font-bold min-w-[80px]">
+                      01.00h
+                    </span>
+                    <p className="text-[var(--color-charcoal)] text-lg">
+                      Vuelta al hotel Rinconsol y a la estación de autobuses de
+                      Vélez-Málaga
                     </p>
                   </div>
                 </div>
@@ -472,7 +481,6 @@ function App() {
                   </p>
                   <ul className="text-[var(--color-taupe)] space-y-1">
                     <li>· Estancias 23-28 Feb</li>
-                    <li>· Código hasta 2 Ene</li>
                   </ul>
                 </div>
               </div>
