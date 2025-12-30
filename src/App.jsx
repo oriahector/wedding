@@ -34,12 +34,46 @@ function App() {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simular envío (aquí podrías conectar con un backend)
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    try {
+      // URL del script de Google Apps Script (la obtendrás después de configurar el script)
+      const SCRIPT_URL =
+        'https://script.google.com/macros/s/AKfycbzUZ19ln_5M3RGDkWD60jQ9tnvjZT-hdVf_65ySnFX9vX7lvGqi57ykv0tcU7lluKiB/exec'
 
-    console.log('Datos del formulario:', formData)
-    setFormSubmitted(true)
-    setIsSubmitting(false)
+      // Preparar los datos para enviar
+      const dataToSend = {
+        nombre: formData.nombre,
+        acompanante: formData.acompanante || '',
+        transporte: formData.transporte,
+        intolerancias: formData.intolerancias || '',
+        traeNinos: formData.traeNinos,
+        ubicacionNinos: formData.ubicacionNinos || '',
+        menuNinos: formData.menuNinos || '',
+        menuVegetariano: formData.menuVegetariano,
+        sorbete: formData.sorbete,
+        timestamp: new Date().toLocaleString('es-ES'),
+      }
+
+      // Enviar a Google Sheets
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(dataToSend),
+      })
+
+      // Como usamos no-cors, no podemos verificar la respuesta
+      // Pero asumimos que funcionó si no hay error
+      setFormSubmitted(true)
+    } catch (error) {
+      console.error('Error al enviar el formulario:', error)
+      alert(
+        'Hubo un error al enviar tu confirmación. Por favor, inténtalo de nuevo.'
+      )
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   useEffect(() => {
