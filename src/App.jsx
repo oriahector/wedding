@@ -3,47 +3,15 @@ import { motion } from 'motion/react'
 import couplePhoto from './assets/chucho.png'
 
 function App() {
-  const handleNavClick = (e, sectionId) => {
-    e.preventDefault()
-    const element = document.querySelector(`#${sectionId}`)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-      // Update URL without hash
-      window.history.pushState(
-        null,
-        '',
-        `/${sectionId === 'home' ? '' : sectionId}`
-      )
-    }
-  }
-
   useEffect(() => {
-    // Handle browser back/forward buttons
-    const handlePopState = () => {
-      const path = window.location.pathname
-      const sectionId = path === '/' || path === '' ? 'home' : path.slice(1)
-      const element = document.querySelector(`#${sectionId}`)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
-    }
-
-    window.addEventListener('popstate', handlePopState)
-
-    // Scroll to section on page load if there's a path
-    const path = window.location.pathname
-    if (path !== '/' && path !== '') {
-      const sectionId = path.slice(1)
-      const element = document.querySelector(`#${sectionId}`)
+    // Scroll to section on page load if there's a hash
+    if (window.location.hash) {
+      const element = document.querySelector(window.location.hash)
       if (element) {
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' })
         }, 100)
       }
-    }
-
-    return () => {
-      window.removeEventListener('popstate', handlePopState)
     }
   }, [])
 
@@ -143,8 +111,7 @@ function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-ivory)]/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
           <a
-            href="/"
-            onClick={(e) => handleNavClick(e, 'home')}
+            href="#home"
             className="font-title text-2xl text-[var(--color-charcoal)]"
           >
             D & P
@@ -159,8 +126,7 @@ function App() {
             ].map((item) => (
               <a
                 key={item.section}
-                href={`/${item.section}`}
-                onClick={(e) => handleNavClick(e, item.section)}
+                href={`#${item.section}`}
                 className="text-xs uppercase tracking-[0.2em] text-[var(--color-taupe)] hover:text-[var(--color-terracotta)] transition-colors"
               >
                 {item.label}
