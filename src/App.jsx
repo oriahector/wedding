@@ -486,18 +486,18 @@ function App() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-6">
+              <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
                 <a
                   href="https://www.hotelrinconsol.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-[var(--color-charcoal)] border-b-2 border-[var(--color-terracotta)] pb-1 hover:text-[var(--color-terracotta)] transition-colors"
+                  className="inline-flex items-center gap-3 text-[var(--color-charcoal)] border-b-2 border-[var(--color-terracotta)] pb-1 hover:text-[var(--color-terracotta)] transition-colors whitespace-nowrap"
                 >
                   <span className="text-sm uppercase tracking-widest">
                     Reservar
                   </span>
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 flex-shrink-0"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -514,13 +514,13 @@ function App() {
                   href="https://maps.app.goo.gl/9pCYyLvEZzsGfPLt8"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-3 text-[var(--color-charcoal)] border-b-2 border-[var(--color-sand)] pb-1 hover:text-[var(--color-terracotta)] transition-colors"
+                  className="inline-flex items-center gap-3 text-[var(--color-charcoal)] border-b-2 border-[var(--color-sand)] pb-1 hover:text-[var(--color-terracotta)] transition-colors whitespace-nowrap"
                 >
                   <span className="text-sm uppercase tracking-widest">
                     Ver mapa
                   </span>
                   <svg
-                    className="w-4 h-4"
+                    className="w-4 h-4 flex-shrink-0"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
