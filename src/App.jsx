@@ -111,6 +111,7 @@ function App() {
               'Lugar',
               'Alojamiento',
               'Confirmación',
+              'Música',
             ].map((item) => (
               <a
                 key={item}
@@ -853,8 +854,62 @@ function App() {
         </div>
       </section>
 
+      {/* Music / Playlist */}
+      <section id="música" className="py-24 px-6 bg-[var(--color-cream)]">
+        <div className="max-w-2xl mx-auto">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, ease: 'easeOut' }}
+          >
+            <p className="text-[var(--color-terracotta)] text-xs uppercase tracking-[0.4em] mb-4">
+              Playlist
+            </p>
+            <h2 className="font-title text-4xl md:text-5xl text-[var(--color-charcoal)] mb-4">
+              Música de la boda
+            </h2>
+            <p className="text-[var(--color-taupe)]">
+              Siéntente libre de añadir alguna de tus canciones favoritas para
+              que suene en nuestra celebración
+            </p>
+          </motion.div>
+
+          {/* Spotify Playlist Widget */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-100px' }}
+            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+          >
+            <div className="rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                src="https://open.spotify.com/embed/playlist/0ehWFfKmBDAeRsXZK2GLmy?utm_source=generator&theme=0"
+                width="100%"
+                height="500"
+                frameBorder="0"
+                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="w-full"
+              ></iframe>
+            </div>
+            <div className="text-center mt-6">
+              <a
+                href="https://open.spotify.com/playlist/0ehWFfKmBDAeRsXZK2GLmy?si=7ab10e5b48174bbb"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--color-terracotta)] text-sm underline hover:text-[var(--color-charcoal)] transition-colors"
+              >
+                Abrir en Spotify
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Final message */}
-      <section className="py-24 px-6 text-center bg-[var(--color-cream)]">
+      <section className="py-24 px-6 text-center ">
         <motion.div
           className="max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
