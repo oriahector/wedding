@@ -1,34 +1,51 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'motion/react'
 import couplePhoto from './assets/chucho.png'
 
 function App() {
-  const navigate = useNavigate()
-  const location = useLocation()
-
-  const handleNavClick = (path, e) => {
+  const handleNavClick = (e, sectionId) => {
     e.preventDefault()
-    navigate(path)
-    setTimeout(() => {
-      const sectionId = path === '/' ? 'home' : path.slice(1)
+    const element = document.querySelector(`#${sectionId}`)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+      // Update URL without hash
+      window.history.pushState(
+        null,
+        '',
+        `/${sectionId === 'home' ? '' : sectionId}`
+      )
+    }
+  }
+
+  useEffect(() => {
+    // Handle browser back/forward buttons
+    const handlePopState = () => {
+      const path = window.location.pathname
+      const sectionId = path === '/' || path === '' ? 'home' : path.slice(1)
       const element = document.querySelector(`#${sectionId}`)
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
       }
-    }, 50)
-  }
-
-  useEffect(() => {
-    const path = location.pathname
-    const sectionId = path === '/' ? 'home' : path.slice(1)
-    const element = document.querySelector(`#${sectionId}`)
-    if (element) {
-      setTimeout(() => {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }, 100)
     }
-  }, [location])
+
+    window.addEventListener('popstate', handlePopState)
+
+    // Scroll to section on page load if there's a path
+    const path = window.location.pathname
+    if (path !== '/' && path !== '') {
+      const sectionId = path.slice(1)
+      const element = document.querySelector(`#${sectionId}`)
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }, 100)
+      }
+    }
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState)
+    }
+  }, [])
 
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -127,23 +144,23 @@ function App() {
         <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
           <a
             href="/"
-            onClick={(e) => handleNavClick('/', e)}
+            onClick={(e) => handleNavClick(e, 'home')}
             className="font-title text-2xl text-[var(--color-charcoal)]"
           >
             D & P
           </a>
           <div className="hidden md:flex items-center gap-10">
             {[
-              { label: 'Celebración', path: '/celebration' },
-              { label: 'Lugar', path: '/location' },
-              { label: 'Alojamiento', path: '/accommodation' },
-              { label: 'Confirmación', path: '/confirmation' },
-              { label: 'Música', path: '/music' },
+              { label: 'Celebración', section: 'celebration' },
+              { label: 'Lugar', section: 'location' },
+              { label: 'Alojamiento', section: 'accommodation' },
+              { label: 'Confirmación', section: 'confirmation' },
+              { label: 'Música', section: 'music' },
             ].map((item) => (
               <a
-                key={item.path}
-                href={item.path}
-                onClick={(e) => handleNavClick(item.path, e)}
+                key={item.section}
+                href={`/${item.section}`}
+                onClick={(e) => handleNavClick(e, item.section)}
                 className="text-xs uppercase tracking-[0.2em] text-[var(--color-taupe)] hover:text-[var(--color-terracotta)] transition-colors"
               >
                 {item.label}
