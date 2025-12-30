@@ -1,8 +1,35 @@
 import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { motion } from 'motion/react'
 import couplePhoto from './assets/chucho.png'
 
 function App() {
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const handleNavClick = (path, e) => {
+    e.preventDefault()
+    navigate(path)
+    setTimeout(() => {
+      const sectionId = path === '/' ? 'home' : path.slice(1)
+      const element = document.querySelector(`#${sectionId}`)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }, 50)
+  }
+
+  useEffect(() => {
+    const path = location.pathname
+    const sectionId = path === '/' ? 'home' : path.slice(1)
+    const element = document.querySelector(`#${sectionId}`)
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }, 100)
+    }
+  }, [location])
+
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -99,25 +126,27 @@ function App() {
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--color-ivory)]/95 backdrop-blur-sm">
         <div className="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
           <a
-            href="#inicio"
+            href="/"
+            onClick={(e) => handleNavClick('/', e)}
             className="font-title text-2xl text-[var(--color-charcoal)]"
           >
             D & P
           </a>
           <div className="hidden md:flex items-center gap-10">
             {[
-              'Celebración',
-              'Lugar',
-              'Alojamiento',
-              'Confirmación',
-              'Música',
+              { label: 'Celebración', path: '/celebration' },
+              { label: 'Lugar', path: '/location' },
+              { label: 'Alojamiento', path: '/accommodation' },
+              { label: 'Confirmación', path: '/confirmation' },
+              { label: 'Música', path: '/music' },
             ].map((item) => (
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.path}
+                href={item.path}
+                onClick={(e) => handleNavClick(item.path, e)}
                 className="text-xs uppercase tracking-[0.2em] text-[var(--color-taupe)] hover:text-[var(--color-terracotta)] transition-colors"
               >
-                {item}
+                {item.label}
               </a>
             ))}
           </div>
@@ -126,7 +155,7 @@ function App() {
 
       {/* Hero */}
       <section
-        id="inicio"
+        id="home"
         className="min-h-screen flex flex-col justify-center items-center px-6 pt-20"
       >
         <div className="max-w-4xl mx-auto text-center">
@@ -219,7 +248,7 @@ function App() {
       </section>
 
       {/* Celebration / Details */}
-      <section id="celebración" className="py-24 px-6 bg-[var(--color-cream)]">
+      <section id="celebration" className="py-24 px-6 bg-[var(--color-cream)]">
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Illustration */}
@@ -290,7 +319,7 @@ function App() {
       </section>
 
       {/* Location */}
-      <section id="lugar" className="py-24 px-6">
+      <section id="location" className="py-24 px-6">
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
@@ -412,7 +441,10 @@ function App() {
       </section>
 
       {/* Accommodation */}
-      <section id="alojamiento" className="py-24 px-6 bg-[var(--color-cream)]">
+      <section
+        id="accommodation"
+        className="py-24 px-6 bg-[var(--color-cream)]"
+      >
         <div className="max-w-5xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Illustration */}
@@ -545,7 +577,7 @@ function App() {
       </section>
 
       {/* Confirmation / RSVP */}
-      <section id="confirmación" className="py-24 px-6">
+      <section id="confirmation" className="py-24 px-6">
         <div className="max-w-2xl mx-auto">
           <motion.div
             className="text-center mb-12"
@@ -854,7 +886,7 @@ function App() {
       </section>
 
       {/* Music / Playlist */}
-      <section id="música" className="py-24 px-6 bg-[var(--color-cream)]">
+      <section id="music" className="py-24 px-6 bg-[var(--color-cream)]">
         <div className="max-w-2xl mx-auto">
           <motion.div
             className="text-center mb-12"
