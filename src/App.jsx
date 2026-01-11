@@ -463,42 +463,8 @@ function App() {
                 Hotel Rinconsol
               </h2>
               <p className="text-[var(--color-taupe)] mb-10">
-                Hemos reservado 15 habitaciones con descuento especial. El bus
-                de la boda pasará por el hotel.
+                El bus de la boda pasará por el hotel.
               </p>
-
-              {/* Code */}
-              <div className="mb-10">
-                <p className="text-[var(--color-taupe)]/60 text-xs uppercase tracking-widest mb-3">
-                  Código de descuento
-                </p>
-                <div className="inline-block border border-[var(--color-sand)] px-6 py-3 rounded">
-                  <code className="font-title text-2xl md:text-3xl text-[var(--color-terracotta)]">
-                    DAVIDYPATRI
-                  </code>
-                </div>
-              </div>
-
-              {/* Info */}
-              <div className="grid grid-cols-2 gap-6 text-sm mb-10">
-                <div>
-                  <p className="text-[var(--color-taupe)]/60 text-xs uppercase tracking-wider mb-2">
-                    Importante
-                  </p>
-                  <ul className="text-[var(--color-taupe)] space-y-1">
-                    <li>· Solo en web del hotel</li>
-                    <li>· Cancelación gratuita</li>
-                  </ul>
-                </div>
-                <div>
-                  <p className="text-[var(--color-taupe)]/60 text-xs uppercase tracking-wider mb-2">
-                    Fechas
-                  </p>
-                  <ul className="text-[var(--color-taupe)] space-y-1">
-                    <li>· Estancias 23-28 Feb</li>
-                  </ul>
-                </div>
-              </div>
 
               <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
                 <a
