@@ -36,10 +36,22 @@ function App() {
 
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [copied, setCopied] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
+  }
+
+  const handleCopyAccount = async () => {
+    const accountNumber = 'ES48 0128 7820 8701 0302 5021'
+    try {
+      await navigator.clipboard.writeText(accountNumber)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (err) {
+      console.error('Error al copiar:', err)
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -936,11 +948,56 @@ function App() {
             Os esperamos
           </h2>
           <p className="text-[var(--color-taupe)] mb-8">
-            para compartir este día tan especial
+            El mejor regalo es que nos acompañéis en este día tan importante
+            para nosotros, pero si queréis tener un detalle con nosotros os
+            dejamos el siguiente número de cuenta:
           </p>
-          <p className="font-title text-2xl text-[var(--color-terracotta)]">
-            David & Patri
-          </p>
+          <div className="flex items-center gap-4 justify-center flex-wrap">
+            <p className="font-title text-2xl text-[var(--color-terracotta)]">
+              ES48 0128 7820 8701 0302 5021
+            </p>
+            <button
+              onClick={handleCopyAccount}
+              className="flex items-center gap-2 px-4 py-2 border border-[var(--color-sand)] rounded hover:border-[var(--color-terracotta)] hover:text-[var(--color-terracotta)] transition-colors text-[var(--color-taupe)]"
+              aria-label="Copiar número de cuenta"
+            >
+              {copied ? (
+                <>
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  <span className="text-sm">Copiado</span>
+                </>
+              ) : (
+                <>
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <span className="text-sm">Copiar</span>
+                </>
+              )}
+            </button>
+          </div>
         </motion.div>
       </section>
 
