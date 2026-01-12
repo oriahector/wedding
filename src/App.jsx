@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'motion/react'
-import couplePhoto from './assets/chucho.png'
+import hero1 from './assets/hero_1.jpeg'
+import hero2 from './assets/hero_2.jpeg'
 
 function App() {
   useEffect(() => {
@@ -154,18 +155,70 @@ function App() {
         className="min-h-screen flex flex-col justify-center items-center px-6 pt-20"
       >
         <div className="max-w-4xl mx-auto text-center">
-          {/* Photo */}
+          {/* Polaroid Photos - Table Layout */}
           <motion.div
-            className="mb-12"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            className="mb-12 relative inline-flex items-center justify-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
-            <img
-              src={couplePhoto}
-              alt="David y Patri"
-              className="w-64 md:w-72 mx-auto"
-            />
+            {/* Polaroid 1 - Left */}
+            <motion.div
+              className="relative bg-white shadow-2xl cursor-pointer w-48 md:w-60"
+              style={{
+                transformOrigin: 'center',
+                padding: '12px 12px 40px 12px',
+                zIndex: 1,
+                marginRight: '-30px',
+                marginTop: '15px',
+              }}
+              initial={{ rotate: -8 }}
+              animate={{ rotate: -8 }}
+              whileHover={{
+                scale: 1.15,
+                rotate: -8,
+                zIndex: 20,
+                transition: { duration: 0.4, ease: 'easeOut' },
+              }}
+            >
+              <div className="bg-white overflow-hidden">
+                <img
+                  src={hero1}
+                  alt="David y Patri"
+                  className="w-full h-auto object-cover"
+                  style={{ aspectRatio: '1 / 1', display: 'block' }}
+                />
+              </div>
+            </motion.div>
+
+            {/* Polaroid 2 - Right */}
+            <motion.div
+              className="relative bg-white shadow-2xl cursor-pointer w-48 md:w-60"
+              style={{
+                transformOrigin: 'center',
+                padding: '12px 12px 40px 12px',
+                zIndex: 2,
+                marginLeft: '-30px',
+                marginTop: '-15px',
+              }}
+              initial={{ rotate: 12 }}
+              animate={{ rotate: 12 }}
+              whileHover={{
+                scale: 1.15,
+                rotate: 12,
+                zIndex: 20,
+                transition: { duration: 0.4, ease: 'easeOut' },
+              }}
+            >
+              <div className="bg-white overflow-hidden">
+                <img
+                  src={hero2}
+                  alt="David y Patri"
+                  className="w-full h-auto object-cover"
+                  style={{ aspectRatio: '1 / 1', display: 'block' }}
+                />
+              </div>
+            </motion.div>
           </motion.div>
 
           {/* Title */}
