@@ -946,8 +946,16 @@ function App() {
 
       {/* Footer */}
       <footer className="py-6 text-center bg-[var(--color-ivory)] border-t border-[var(--color-sand)]">
-        <p className="text-xs text-[var(--color-taupe)] tracking-widest">
-          28 · 02 · 2026
+        <p className="text-sm text-[var(--color-taupe)] tracking-widest">
+          made with ❤️ by{' '}
+          <a
+            href="https://www.instagram.com/oria_hector/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--color-terracotta)] hover:text-[var(--color-charcoal)] transition-colors underline"
+          >
+            Héctor Martínez
+          </a>
         </p>
       </footer>
     </div>
