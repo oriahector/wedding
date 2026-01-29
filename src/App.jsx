@@ -94,7 +94,7 @@ function App() {
     } catch (error) {
       console.error('Error al enviar el formulario:', error)
       alert(
-        'Hubo un error al enviar tu confirmación. Por favor, inténtalo de nuevo.'
+        'Hubo un error al enviar tu confirmación. Por favor, inténtalo de nuevo.',
       )
     } finally {
       setIsSubmitting(false)
@@ -945,7 +945,7 @@ function App() {
             <div className="text-center mt-6 space-y-4">
               <div>
                 <a
-                  href="https://open.spotify.com/playlist/0ehWFfKmBDAeRsXZK2GLmy?si=ccbbbfa9d1ab4286&pt=a769f9ec09ede98fc8c3e9b6d87d1427"
+                  href="https://open.spotify.com/playlist/0ehWFfKmBDAeRsXZK2GLmy?si=818d5c4ef8f4446a&pt=c2df0753f63020772e8a3793d7e5e575"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[var(--color-charcoal)] border-b-2 border-[var(--color-terracotta)] pb-1 hover:text-[var(--color-terracotta)] transition-colors"
