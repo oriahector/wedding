@@ -945,7 +945,7 @@ function App() {
             <div className="text-center mt-6 space-y-4">
               <div>
                 <a
-                  href="https://open.spotify.com/playlist/0ehWFfKmBDAeRsXZK2GLmy?si=818d5c4ef8f4446a&pt=c2df0753f63020772e8a3793d7e5e575"
+                  href="https://open.spotify.com/playlist/0ehWFfKmBDAeRsXZK2GLmy?si=kk5HB1MHSqmZ_z9wx_-E3A&pi=T_yEnJWpTzmK7&pt=1454de937a2ae5fdcc5eb247e00cd4de"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[var(--color-charcoal)] border-b-2 border-[var(--color-terracotta)] pb-1 hover:text-[var(--color-terracotta)] transition-colors"
